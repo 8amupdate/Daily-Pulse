@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Daily Pulse</title>
+    <!-- PWA Tags for Home Screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body style="margin:0; background:#090c14;">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // PASTE YOUR CORRECTED CODE DATA AND COMPONENTS HERE
+        const C = { bg: "#090c14", card: "#0f1420", border: "#1a2035", green: "#22d48f", red: "#f04e6e", blue: "#4f8ef7", text: "#e2e8f0", muted: "#4b5563", sub: "#94a3b8" };
+        const DATA = { date: "Sunday, May 10, 2026", news: { positive: 18, negative: 70, summary: "Global tensions remain high. Watch for market volatility." }, nifty: { last_close: 24330, levels: [{ label: "Support", value: "24,000", type: "support" }] } };
+
+        function App() {
+            const [tab, setTab] = useState("news");
+            return (
+                <div style={{ minHeight: "100vh", background: C.bg, color: C.text, padding: "20px", fontFamily: "sans-serif" }}>
+                    <h1 style={{ textAlign: "center", fontSize: "24px" }}>Daily Pulse</h1>
+                    <div style={{ display: "flex", gap: "10px", marginBottom: "20px", background: C.card, padding: "5px", borderRadius: "10px" }}>
+                        <button onClick={() => setTab("news")} style={{ flex: 1, padding: "10px", background: tab === "news" ? C.blue : "transparent", color: "#fff", border: "none", borderRadius: "8px" }}>NEWS</button>
+                        <button onClick={() => setTab("nifty")} style={{ flex: 1, padding: "10px", background: tab === "nifty" ? C.blue : "transparent", color: "#fff", border: "none", borderRadius: "8px" }}>NIFTY</button>
+                    </div>
+                    <div style={{ background: C.card, padding: "20px", borderRadius: "15px", border: 1px solid ${C.border} }}>
+                        {tab === "news" ? <p>{DATA.news.summary}</p> : <p>Nifty Support: {DATA.nifty.levels[0].value}</p>}
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
